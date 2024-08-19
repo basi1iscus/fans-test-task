@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "db65ca20-4e48-41a5-9455-800e14739353",
+		"name": "fansCRM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22810423",
+		"_collection_link": "https://restless-comet-482049.postman.co/workspace/HR~6a9edb9c-7c24-4baa-be67-fc013b60abb6/collection/22810423-db65ca20-4e48-41a5-9455-800e14739353?action=share&source=collection_link&creator=22810423"
+	},
+	"item": [
+		{
+			"name": "get-token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"pm.test(\"Must get jwt\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.token).exist;",
+							"",
+							"    pm.collectionVariables.set(\"token\", jsonData.token);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/get-token/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"get-token",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test7@email.com\",\n    \"password\": \"strinfghjsdfg\",\n    \"name\": \"Vasyl Kamunnyi\",\n    \"phone\": \"0683027885\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/add-user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"add-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test7@email.com\",\n    \"password\": \"strinfghjsdfg\",\n    \"name\": \"Vasyl Kamunnyi\",\n    \"phone\": \"0683027885\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/get-user/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"get-user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test7@email.com\",\n    \"password\": \"strinfghjsdfg\",\n    \"name\": \"Vasyl Kamunnyi\",\n    \"phone\": \"0683027885\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3001/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyNDA3MDcyNiwiZXhwIjoxNzI0MTU3MTI2fQ.q7blmb6yvR4yPt6-L9__96D2bGXwGM7IewGF5a9PRM8",
+			"type": "string"
+		}
+	]
+}
